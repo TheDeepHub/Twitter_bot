@@ -1,0 +1,21 @@
+from dotenv import load_dotenv
+import os
+import tweepy
+
+load_dotenv()
+
+
+consumer_key = os.getenv("TWITTER_CONSUMER_KEY")
+consumer_secret = os.getenv("TWITTER_CONSUMER_SECRET")
+access_token = os.getenv("TWITTER_ACCESS_TOKEN")
+access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+
+client_twitter = tweepy.Client(consumer_key= consumer_key,
+                    consumer_secret=consumer_secret,
+                    access_token=access_token,
+                    access_token_secret=access_token_secret)
+
+def post_tweet(tweet_content):
+    # Make sure to import and authenticate your Twitter client here
+    response = client_twitter.create_tweet(text=tweet_content)
+    print(f"Tweet posted: {response.data}")
